@@ -1,11 +1,11 @@
 package com.hand.buildcharacter.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
-@Entity
+//import jakarta.persistence.Entity;
+//import jakarta.persistence.Id;
+//
+//@Entity
 public class Skill {
-    @Id
+//    @Id
     Long id;
     String name;
 

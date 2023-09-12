@@ -30,10 +30,10 @@ public class SkillServiceImpl implements SkillService {
     }
 
     private void loadProducts() {
-    Skill skillStrength = new Skill();
-        skillStrength.setId(1L);
-        skillStrength.setName("Strength");
-        productMap.put(0, skillStrength);
+//    Skill skillStrength = new Skill();
+//        skillStrength.setId(1L);
+//        skillStrength.setName("Strength");
+//        productMap.put(0, skillStrength);
 
     }
 }
