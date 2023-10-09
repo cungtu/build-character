@@ -1,34 +1,56 @@
 package com.hand.buildcharacter.controller;
 
-import com.hand.buildcharacter.bean.SkillService;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
+
+import com.hand.buildcharacter.domain.Skill;
+import com.hand.buildcharacter.service.SkillService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 
 @Controller
+@RequestMapping("/skill")
 public class SkillController {
 
-    private SkillService skillService;
+    private SkillService skillRepository;
 
-    @Autowired
-    public void setProductService(SkillService skillService) {
-        this.skillService = skillService;
+    public SkillController(SkillService theSkillRepository) {
+        skillRepository = theSkillRepository;
     }
 
-    @GetMapping("/skill")
-    private String getSkill()
-    {
-        return "skill";
+    @GetMapping("/list")
+    public String listSkills(Model theModel) {
+        List<Skill> theSkills = skillRepository.findAll();
+        theModel.addAttribute("skills", theSkills);
+        return "skills/list-skills";
     }
 
-    @RequestMapping("/skill/{id}")
-    public String getSkillById(@RequestParam Integer id, Model model){
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model theModel) {
+        Skill theSkill = new Skill();
+        theModel.addAttribute("skill", theSkill);
+        return "skills/skill-form";
+    }
 
-        model.addAttribute("skill", skillService.getSkill(id));
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("skillId") int theId,
+                                    Model theModel) {
+        Skill theSill = skillRepository.findById(theId);
+        theModel.addAttribute("skill", theSill);
+        return "skills/skill-form";
+    }
 
-        return "skill";
+    @PostMapping("/save")
+    public String saveSkill(@ModelAttribute("skill") Skill theSkill) {
+        skillRepository.save(theSkill);
+        return "redirect:/skill/list";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("skillId") int theId) {
+        skillRepository.deleteById(theId);
+        return "redirect:/skill/list";
     }
 }
