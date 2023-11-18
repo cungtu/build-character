@@ -9,20 +9,20 @@
     <!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-	<title>Skill Directory</title>
+	<title>Character Directory</title>
 </head>
 
 <body>
 
 <div class="container">
 
-	<h3>Skill Directory</h3>
+	<h3>Character Directory</h3>
 	<hr>
 
 	<!-- Add a button -->
-	<a th:href="@{/skill/showFormForAdd}"
+	<a th:href="@{/character/showFormForAdd}"
 		class="btn btn-primary btn-sm mb-3">
-		Add Skill
+		Add Character
 	</a>
 
 	<table class="table table-bordered table-striped">
@@ -30,28 +30,27 @@
 			<tr>
 				<th>ID</th>
 				<th>Name</th>
-				<th>Point</th>
+
 			</tr>
 		</thead>
 		
 		<tbody>
-			<tr th:each="tempSkill : ${skills}">
+			<tr th:each="tempCharacter : ${characters}">
 			
-				<td th:text="${tempSkill.id}" />
-				<td th:text="${tempSkill.name}" />
-				<td th:text="${tempSkill.point}" />
+				<td th:text="${tempCharacter.id}" />
+				<td th:text="${tempCharacter.name}" />
 
 				<!-- Add update button/link -->
 				<td>
-					<a th:href="@{/skill/showFormForUpdate(skillId=${tempSkill.id})}"
+					<a th:href="@{/character/showFormForUpdate(characterId=${tempCharacter.id})}"
 					   class="btn btn-info btn-sm">
 						Update
 					</a>
 
 					<!-- Add "delete" button/link -->
-					<a th:href="@{/skill/delete(skillId=${tempSkill.id})}"
+					<a th:href="@{/character/delete(characterId=${tempCharacter.id})}"
 					   class="btn btn-danger btn-sm"
-					   onclick="if (!(confirm('Are you sure you want to delete this Skill?'))) return false">
+					   onclick="if (!(confirm('Are you sure you want to delete this Character?'))) return false">
 						Delete
 					</a>
 				</td>

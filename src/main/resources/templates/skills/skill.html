@@ -1,16 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Skill</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Welcome to skill page!</title>
 </head>
 <body>
-    <h1>Welcome to skill page!</h1><br>
-    <h5>Strength: </h5><br>
-    <h5>Intelligent: </h5><br>
-    <h5>Leadership: </h5><br>
-    <h5>Personality: </h5><br>
-    <h5>Emotional: </h5><br>
+    <h1 th:object="${character}" >Skill id detail of character: "cungtu"</h1>
+    <h5 th:object="${strengSkill}" th:text="${strengSkill.point}">Strength: </h5><br>
+    <h5 th:object="${interlligentSkill}" th:text="${interlligentSkill.point}">>Intelligent: </h5><br>
+    <h5 th:object="${leadershipSkill}" th:text="${leadershipSkill.point}">Leadership: </h5><br>
+    <h5 th:object="${personalitySkill}" th:text="${personalitySkill.point}">Personality: </h5><br>
+    <h5 th:object="${emotionalSkill}" th:text="${emotionalSkill.point}">Emotional: </h5><br>
 
 </body>
 </html>

@@ -1,7 +1,10 @@
 package com.hand.buildcharacter.service;
 
+import com.hand.buildcharacter.dao.CharacterRepository;
 import com.hand.buildcharacter.dao.SkillRepository;
 import com.hand.buildcharacter.domain.Skill;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +20,13 @@ import java.util.Optional;
 public class SkillServiceImpl implements SkillService {
 
     private SkillRepository skillRepository;
+    private EntityManager entityManager;
+    private CharacterRepository characterRepository;
 
     @Autowired
-    public SkillServiceImpl(SkillRepository theskillRepository) {
+    public SkillServiceImpl(SkillRepository theskillRepository,EntityManager theEntityManager ) {
         skillRepository = theskillRepository;
+        entityManager= theEntityManager;
     }
 
 
@@ -40,6 +46,19 @@ public class SkillServiceImpl implements SkillService {
             throw new RuntimeException("Did not find Skill id - " + theId);
         }
         return theSkill;
+    }
+
+    @Override
+    public List<Skill> findByCharacterId(int id) {
+        // create query
+        TypedQuery<Skill> query = entityManager.createQuery(
+                "from Skill where character.id = :charId", Skill.class);
+        query.setParameter("charId", 1);
+
+        // execute query
+
+        return query.getResultList();
+
     }
 
     @Override

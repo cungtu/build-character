@@ -9,6 +9,7 @@ public interface SkillService {
     List<Skill> findAll();
 
     Skill findById(int theId);
+    List<Skill> findByCharacterId(int characterId);
 
     void save(Skill theSkill);
 
